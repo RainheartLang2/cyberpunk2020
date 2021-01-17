@@ -4,11 +4,11 @@ import "./index.css";
 import * as serviceWorker from "./serviceWorker";
 import { Provider } from "mobx-react";
 import { stores } from "./stores";
-import CharAttributes from "./components/CharAttributes";
+import App from "./App";
 
 ReactDOM.render(
   <Provider {...stores}>
-    <CharAttributes />
+    <App/>
   </Provider>,
 
   document.getElementById("root")
