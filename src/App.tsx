@@ -1,22 +1,22 @@
 import React, { Component } from "react";
 import "./App.css";
 import { observer, inject } from "mobx-react";
-import { IMobxStore } from "./stores/mobxStore";
+import {CharacterStore} from "./stores/CharacterStore";
 
 interface AppProps {
-  mobxStore?: IMobxStore;
+  characterStore?: CharacterStore
 }
 
-@inject("mobxStore")
+@inject("characterStore")
 @observer
 class App extends Component<AppProps> {
   render() {
-    const { greeting } = this.props.mobxStore!;
+    const { intelligence } = this.props.characterStore!;
 
     return (
       <div className="App">
         <header className="App-header">
-          {greeting}
+          {intelligence}
           <button onClick={this.clickHandler} value="Bob">
             Change Greeting
           </button>
@@ -29,8 +29,8 @@ class App extends Component<AppProps> {
   }
 
   private clickHandler = (e: React.SyntheticEvent<HTMLButtonElement>) => {
-    const { setName } = this.props.mobxStore!;
-    setName(e.currentTarget.value);
+    const { setInt } = this.props.characterStore!;
+    setInt(6)
   };
 }
 

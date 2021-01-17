@@ -1,5 +1,6 @@
 import { MobxStore } from "./mobxStore";
 import { create } from "mobx-persist";
+import {CharacterStore} from "./CharacterStore";
 
 interface Stores {
   [key: string]: any;
@@ -7,6 +8,7 @@ interface Stores {
 
 export const stores: Stores = {
   mobxStore: new MobxStore(),
+  characterStore: new CharacterStore()
 };
 
 const hydrate = create({
