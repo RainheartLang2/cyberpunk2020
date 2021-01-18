@@ -1,9 +1,9 @@
-export function roll10(): number {
-    return getRandomInt(10) + 1
+export function roll10(times: number = 1): number {
+    return times * getRandomInt(10) + times
 }
 
-export function roll6(): number {
-    return getRandomInt(6) + 1
+export function roll6(times: number = 1): number {
+    return times * getRandomInt(6) + times
 }
 
 function getRandomInt(max: number): number {

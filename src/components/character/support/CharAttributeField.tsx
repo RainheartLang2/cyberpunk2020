@@ -11,17 +11,19 @@ export const CharAttributeField: React.FunctionComponent<Properties> = props => 
                     value={props.value ? props.value : 1}
                     onChange={event => props.change(+event.currentTarget.value)}
                 />
-                <Button
+                {
+                    props.showButton ?
+                    <Button
                     variant={"contained"}
                     color={"primary"}
-                    onClick={
-                        () => {
-                            props.change(roll10())
-                        }
-                    }
-                >
+                    onClick={ () => {
+                        props.change(roll10())
+                    }}
+                    >
                     roll 10
-                </Button>
+                    </Button>
+                    : ""
+                }
             </div>
         )
 }
@@ -29,5 +31,6 @@ export const CharAttributeField: React.FunctionComponent<Properties> = props => 
 export type Properties = {
     label: string,
     value: number,
+    showButton: boolean,
     change: (value: number) => void
 }
