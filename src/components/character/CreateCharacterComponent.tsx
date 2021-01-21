@@ -1,7 +1,9 @@
 import {inject, observer} from "mobx-react";
 import React, {Component} from "react";
-import {Button} from "@material-ui/core";
 import CharAttributes from "./CharAttributes";
+import {CharacterStore} from "../../stores/CharacterStore";
+import {CharacterCreationStage} from "../../stores/logics/beans/CharacterCreationStage";
+import CharBackground from "./CharBackground";
 
 @inject("characterStore")
 @observer
@@ -12,14 +14,13 @@ export default class CreateCharacterComponent extends Component<Properties> {
                 <h1>
                     Создание персонажа
                 </h1>
-                <div>
-                    <CharAttributes/>
-                </div>
+                {this.props.characterStore!.stage == CharacterCreationStage.Attributes ? <CharAttributes/> : "" }
+                {this.props.characterStore!.stage == CharacterCreationStage.Background ? <CharBackground/> : "" }
             </div>
         )
     }
 }
 
 type Properties = {
-
+    characterStore?: CharacterStore
 }

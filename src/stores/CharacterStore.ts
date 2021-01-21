@@ -2,6 +2,9 @@ import {action, observable} from "mobx";
 import {persist} from "mobx-persist";
 import {AttributeDistributionType} from "./logics/beans/AttributeDistributionType";
 import {roll10} from "../util/Util";
+import {CharacterCreationStage} from "./logics/beans/CharacterCreationStage";
+import {OriginType} from "./logics/beans/OriginType";
+import {FamilyRankings} from "./logics/beans/Constants";
 
 export type CharAttributes = {
     int: number,
@@ -17,6 +20,7 @@ export type CharAttributes = {
 }
 
 export class CharacterStore implements CharacterStore {
+    @observable stage: CharacterCreationStage = CharacterCreationStage.Attributes
     @observable distributionType: AttributeDistributionType = AttributeDistributionType.Manual
     @observable attributePoints = 50
     showAttributeRollButton = () => this.distributionType == AttributeDistributionType.Roll
@@ -49,6 +53,16 @@ export class CharacterStore implements CharacterStore {
             emp: 3
         }
     )
+
+    @observable name: string = ""
+    @observable lastName: string = ""
+    @observable origin: OriginType = OriginType.AngloAmerican
+    @observable familyRanking: string = FamilyRankings[0]
+
+    @action.bound
+    public nextStage(): void {
+        this.stage++
+    }
 
     @action.bound
     public setInt(int: number): void {
@@ -130,5 +144,25 @@ export class CharacterStore implements CharacterStore {
     @action.bound
     public rollAttributePoints() {
         this.attributePoints = roll10(9)
+    }
+
+    @action.bound
+    public setOrigin(value: OriginType) {
+        this.origin = value
+    }
+
+    @action.bound
+    public setName(value: string) {
+        this.name = value
+    }
+
+    @action.bound
+    public setLastName(value: string) {
+        this.lastName = value
+    }
+
+    @action.bound
+    public setFamilyRanking(value: string) {
+        this.familyRanking = value
     }
 }

@@ -85,6 +85,7 @@ class CharAttributes extends Component<CharAttributesProps> {
                     variant={"contained"}
                     color={"primary"}
                     disabled={!store.attributesDataValid()}
+                    onClick={() => store.nextStage()}
                 >
                     Далее
                 </Button>
