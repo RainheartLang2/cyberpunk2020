@@ -6,14 +6,16 @@ import InputLabel from "@material-ui/core/InputLabel";
 import Select from "@material-ui/core/Select";
 import MenuItem from "@material-ui/core/MenuItem";
 import {OriginType} from "../../stores/logics/beans/OriginType";
-import {FamilyRankings} from "../../stores/logics/beans/Constants";
+import {ChildhoodTypes, FamilyRankings, FamilyTragedies, ParentStatuses} from "../../stores/logics/beans/Constants";
 import {roll10} from "../../util/Util";
+import {SiblingsMenu} from "./support/SiblingsMenu";
 
 @inject("characterStore")
 @observer
 export default class CharBackground extends Component<Properties> {
     render() {
         const store = this.props.characterStore!
+        console.log(store.siblings.length)
         return (
             <div>
                 <div>
@@ -42,22 +44,84 @@ export default class CharBackground extends Component<Properties> {
                             )
                         })}
                     </Select>
-                    <InputLabel id="familyRankingLabel">Статус семьи</InputLabel>
-                    <Select
-                        labelId="familyRankingLabel"
-                        id="familyRanking"
-                        value={store.familyRanking}
-                        onChange={event => store.setFamilyRanking(event.target.value as string)}
-                    >
-                        {FamilyRankings.map(item => <MenuItem value={item}>{item}</MenuItem>)}
-                    </Select>
-                    <Button
-                        variant={"contained"}
-                        color={"primary"}
-                        onClick={() => store.setFamilyRanking(FamilyRankings[roll10() - 1])}
-                    >
-                        Roll
-                    </Button>
+                    <div>
+                        <InputLabel id="familyRankingLabel">Статус семьи:</InputLabel>
+                        <Select
+                            labelId="familyRankingLabel"
+                            id="familyRanking"
+                            value={store.familyRanking}
+                            onChange={event => store.setFamilyRanking(event.target.value as string)}
+                        >
+                            {FamilyRankings.map(item => <MenuItem value={item}>{item}</MenuItem>)}
+                        </Select>
+                        <Button
+                            variant={"contained"}
+                            color={"primary"}
+                            onClick={() => store.setFamilyRanking(FamilyRankings[roll10() - 1])}
+                        >
+                            Roll
+                        </Button>
+                    </div>
+                    <div>
+                        <InputLabel id="parentStatusLabel">Родители:</InputLabel>
+                        <Select
+                            labelId="parentStatusLabel"
+                            id="parentStatus"
+                            value={store.parentStatus}
+                            onChange={event => store.setParentsStatus(event.target.value as string)}
+                        >
+                            {ParentStatuses.map(item => <MenuItem value={item}>{item}</MenuItem>)}
+                        </Select>
+                        <Button
+                            variant={"contained"}
+                            color={"primary"}
+                            onClick={() => store.rollParentsStatus()}
+                        >
+                            Roll
+                        </Button>
+                    </div>
+                    <div>
+                        <InputLabel id="famulyTragedyLabel">Семейная трагедия:</InputLabel>
+                        <Select
+                            labelId="familyTragedyLabel"
+                            id="familyTragedy"
+                            value={store.familyTragedy}
+                            onChange={event => store.setFamilyTragedy(event.target.value as string)}
+                        >
+                            {FamilyTragedies.map(item => <MenuItem value={item}>{item}</MenuItem>)}
+                        </Select>
+                        <Button
+                            variant={"contained"}
+                            color={"primary"}
+                            onClick={() => store.rollFamilyTragedyStatus()}
+                        >
+                            Roll
+                        </Button>
+                        <div>
+                            <InputLabel id="childhoodTypeLabel">Детство:</InputLabel>
+                            <Select
+                                labelId="childhoodTypeLabel"
+                                id="childhoodType"
+                                value={store.childhood}
+                                onChange={event => store.setChildhoodType(event.target.value as string)}
+                            >
+                                {ChildhoodTypes.map(item => <MenuItem value={item}>{item}</MenuItem>)}
+                            </Select>
+                            <Button
+                                variant={"contained"}
+                                color={"primary"}
+                                onClick={() => store.setChildhoodType(ChildhoodTypes[roll10() - 1])}
+                            >
+                                Roll
+                            </Button>
+                        </div>
+                        <SiblingsMenu
+                            siblings={store.siblings}
+                            setCount={store.setSiblingsCount}
+                            rollCount={store.rollSiblingsCount}
+                            setSiblingFirstName={store.setSiblingFirstName}
+                        />
+                    </div>
                 </div>
             </div>
         )
