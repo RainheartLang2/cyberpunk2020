@@ -6,7 +6,7 @@ import {roll10, roll6} from "../../util/Util";
 import {
     DisasterStrike,
     DisasterStrikes,
-    DisasterStrikeTexts, FriendTypes, FriendTypeTexts,
+    DisasterStrikeTexts, EnemyTypes, EnemyTypeTexts, FriendTypes, FriendTypeTexts,
     LuckyEvent, LuckyEvents,
     LuckyEventTexts
 } from "../../stores/logics/beans/Constants";
@@ -77,6 +77,8 @@ export default class CharacterLifeEvents extends Component<Properties> {
             return LuckyEventTexts.get(event as LuckyEvent)!
         } else if (!!FriendTypes.find(item => item == event)) {
             return "Приобретён друг " + FriendTypeTexts.get(event)!
+        } else if (!!EnemyTypes.find(item => item == event)) {
+            return "Приобретён враг " + EnemyTypeTexts.get(event)!
         }
         console.log("unknown event name " + event)
         return ""

@@ -186,7 +186,6 @@ export const FriendTypes: string[] = [
     FriendType.CommonInterest
 ]
 
-
 export const FriendTypeTexts: Map<string, string> = new Map([
     [FriendType.LikeBigSibling, "Как старший брат/сестра"],
     [FriendType.LikeLittleSibling, "Как младший брат/сестра"],
@@ -198,4 +197,42 @@ export const FriendTypeTexts: Map<string, string> = new Map([
     [FriendType.Relative, "Родственник"],
     [FriendType.ChildhoodFriend, "Друг детства"],
     [FriendType.CommonInterest, "Единомышленник"]
+])
+
+export const EnemyType = {
+    ExFriend: "ExFriend",
+    ExLover: "ExLover",
+    Relative: "EnemyRelative",
+    ChildhoodEnemy: "ChildhoodEnemy",
+    PersonWorkingForYou: "PersonWorkingForYou",
+    PersonYouWorkFor: "PersonYouWorkFor",
+    CoWorker: "EnemyCoworker",
+    BoosterGangMember: "BoosterGangMember",
+    CorporateExecutive: "CorporateExecutive",
+    GovernmentOfficial: "GovernmentOfficial",
+}
+
+export const EnemyTypes: string[] = [
+    EnemyType.ExFriend,
+    EnemyType.ExLover,
+    EnemyType.Relative,
+    EnemyType.ChildhoodEnemy,
+    EnemyType.PersonWorkingForYou,
+    EnemyType.PersonYouWorkFor,
+    EnemyType.CoWorker,
+    EnemyType.BoosterGangMember,
+    EnemyType.CorporateExecutive,
+    EnemyType.GovernmentOfficial
+]
+
+export const EnemyTypeTexts: Map<string, string> = new Map([
+    [EnemyType.ExFriend, "Бывший друг"],
+    [EnemyType.ExLover, "Бывший любовник"],
+    [EnemyType.ChildhoodEnemy, "Враг детства"],
+    [EnemyType.PersonWorkingForYou, "Человек, работавший на Вас"],
+    [EnemyType.PersonYouWorkFor, "Бывший работодатель"],
+    [EnemyType.CoWorker, "Коллега"],
+    [EnemyType.BoosterGangMember, "Член банды"],
+    [EnemyType.CorporateExecutive, "Директор корпорации"],
+    [EnemyType.GovernmentOfficial, "Чиновник"]
 ])

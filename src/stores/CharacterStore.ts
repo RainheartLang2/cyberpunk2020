@@ -6,7 +6,7 @@ import {CharacterCreationStage} from "./logics/beans/CharacterCreationStage";
 import {OriginType} from "./logics/beans/OriginType";
 import {
     ChildhoodTypes,
-    DisasterStrike, DisasterStrikes,
+    DisasterStrike, DisasterStrikes, EnemyTypes,
     FamilyRankings,
     FamilyTragedies, FriendTypes, LuckyEvent, LuckyEvents,
     ParentStatuses,
@@ -351,14 +351,21 @@ export class CharacterStore implements CharacterStore {
         if (roll10() % 2 == 0) {
             return this.createRandomFriendEvent()
         } else {
-            console.log("enemy event not implemented")
-            return this.createRandomFriendEvent()
+            return this.createRandomEnemyEvent()
         }
     }
 
     createRandomFriendEvent(): LifeEvent {
         return {
             type: FriendTypes[roll10() - 1],
+            data: {},
+            activate: () => {}
+        }
+    }
+
+    createRandomEnemyEvent(): LifeEvent {
+        return {
+            type: EnemyTypes[roll10() - 1],
             data: {},
             activate: () => {}
         }
