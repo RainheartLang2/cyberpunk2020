@@ -120,9 +120,17 @@ export default class CharBackground extends Component<Properties> {
                             setCount={store.setSiblingsCount}
                             rollCount={store.rollSiblingsCount}
                             setSiblingFirstName={store.setSiblingFirstName}
+                            rollSibling={store.rollSibling}
                         />
                     </div>
                 </div>
+                <Button
+                    variant={"contained"}
+                    color={"primary"}
+                    onClick={() => store.nextStage()}
+                >
+                    Далее
+                </Button>
             </div>
         )
     }

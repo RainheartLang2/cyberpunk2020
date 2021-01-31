@@ -38,6 +38,13 @@ export const SiblingsMenu: React.FunctionComponent<Properties> = props => {
                                 <span>{item.age} лет</span>
                                 <span>{item.gender == GenderType.MALE ? "М" : "Ж"}</span>
                                 <span>{RelationTypes.get(item.relation)}</span>
+                                <Button
+                                    variant={"contained"}
+                                    color={"primary"}
+                                    onClick={() => props.rollSibling(index)}
+                                >
+                                    Roll
+                                </Button>
                             </div>
                         )
                     )
@@ -52,4 +59,5 @@ type Properties = {
     setCount: (count: number) => void
     rollCount: () => void
     setSiblingFirstName: (value: string, index: number) => void
+    rollSibling: (index: number) => void
 }

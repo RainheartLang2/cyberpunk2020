@@ -4,7 +4,14 @@ import {AttributeDistributionType} from "./logics/beans/AttributeDistributionTyp
 import {roll10, rollCustomDice} from "../util/Util";
 import {CharacterCreationStage} from "./logics/beans/CharacterCreationStage";
 import {OriginType} from "./logics/beans/OriginType";
-import {ChildhoodTypes, FamilyRankings, FamilyTragedies, ParentStatuses, RelationType} from "./logics/beans/Constants";
+import {
+    ChildhoodTypes,
+    DisasterStrike, DisasterStrikes,
+    FamilyRankings,
+    FamilyTragedies, LuckyEvent, LuckyEvents,
+    ParentStatuses,
+    RelationType
+} from "./logics/beans/Constants";
 import {GenderType} from "./logics/beans/GenderType";
 
 export type CharAttributes = {
@@ -17,6 +24,12 @@ export type CharAttributes = {
     ma: number,
     body: number,
     emp: number
+}
+
+export type LifeEvent = {
+    type: DisasterStrike | LuckyEvent,
+    data: any,
+    activate: (data: any) => void
 }
 
 export type Sibling = {
@@ -61,6 +74,7 @@ export class CharacterStore implements CharacterStore {
         }
     )
 
+
     @observable name: string = ""
     @observable lastName: string = ""
     @observable origin: OriginType = OriginType.AngloAmerican
@@ -71,6 +85,10 @@ export class CharacterStore implements CharacterStore {
     @persist @observable siblings: IObservableArray<Sibling> = observable.array([], {
         deep: true
     })
+
+    @observable age: number = 16
+
+    @observable lifeEvents: IObservableArray<LifeEvent> = observable.array([])
 
     @action.bound
     public nextStage(): void {
@@ -278,6 +296,64 @@ export class CharacterStore implements CharacterStore {
             this.setSiblingsCount(3)
         } else {
             this.setSiblingsCount(result - 13)
+        }
+    }
+
+    @action.bound
+    rollSibling(index: number) {
+        this.siblings[index] = {
+            ...this.createRandomSibling(),
+            firstName: this.siblings[index].firstName
+        }
+    }
+
+    @action.bound
+    setAge(value: number) {
+        if (this.age < 16 || this.age > 100) {
+            return
+        }
+        this.age = value
+        this.lifeEvents.replace([])
+    }
+
+    @action.bound
+    rollNextEvent() {
+        this.lifeEvents[this.lifeEvents.length] = this.createRandomLifeEvent()
+    }
+
+    createRandomLifeEvent() : LifeEvent {
+        const roll = roll10()
+        if (roll < 4) {
+            return this.createRandomLuckOrDisaster()
+        } else {
+            console.log("life event type not implemented")
+            return this.createRandomLuckOrDisaster()
+        }
+    }
+
+    createRandomLuckOrDisaster(): LifeEvent {
+        if (roll10() % 2 == 0) {
+            return this.createRandomDisaster()
+        } else {
+            return this.createRandomLuckyEvent()
+        }
+    }
+
+    createRandomDisaster(): LifeEvent {
+        const roll = roll10()
+        const type = DisasterStrikes[roll - 1]
+        return {
+            type,
+            data: {},
+            activate: () => {}
+        }
+    }
+
+    createRandomLuckyEvent(): LifeEvent {
+        return {
+            type: LuckyEvents[roll10() - 1],
+            data: {},
+            activate: () => {}
         }
     }
 }

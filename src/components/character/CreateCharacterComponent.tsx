@@ -4,6 +4,7 @@ import CharAttributes from "./CharAttributes";
 import {CharacterStore} from "../../stores/CharacterStore";
 import {CharacterCreationStage} from "../../stores/logics/beans/CharacterCreationStage";
 import CharBackground from "./CharBackground";
+import CharacterLifeEvents from "./CharacterLifeEvents";
 
 @inject("characterStore")
 @observer
@@ -16,6 +17,7 @@ export default class CreateCharacterComponent extends Component<Properties> {
                 </h1>
                 {this.props.characterStore!.stage == CharacterCreationStage.Attributes ? <CharAttributes/> : "" }
                 {this.props.characterStore!.stage == CharacterCreationStage.Background ? <CharBackground/> : "" }
+                {this.props.characterStore!.stage == CharacterCreationStage.LifeEvents ? <CharacterLifeEvents/> : "" }
             </div>
         )
     }

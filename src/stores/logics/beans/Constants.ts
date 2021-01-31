@@ -68,3 +68,93 @@ export const RelationTypes: Map<RelationType, String> = new Map([
     [RelationType.NEUTRAL, "Безразличен"]
 ]);
 
+export enum LifeEventType {
+    BigProblemsBigWins,
+    FriendsAndEnemies,
+    RomanticInvolvement,
+    Nothing
+}
+
+export const LifeEventTexts: Map<LifeEventType, String> = new Map([
+    [LifeEventType.BigProblemsBigWins, "Большие проблемы, большие победы"],
+    [LifeEventType.FriendsAndEnemies, "Друзья и враги"],
+    [LifeEventType.RomanticInvolvement, "Влюблённость"],
+    [LifeEventType.Nothing, "Ничего не произошло"]
+])
+
+export enum DisasterStrike {
+    FinancialLost,
+    Imprisonment,
+    IllnessOrAddiction,
+    Betrayal,
+    Accident,
+    ClosePersonKilled,
+    FalseAccusation,
+    HuntedByTheLaw,
+    HuntedByACorp,
+    Incapacitation
+}
+
+export const DisasterStrikes: DisasterStrike[] = [
+    DisasterStrike.FinancialLost,
+    DisasterStrike.Imprisonment,
+    DisasterStrike.IllnessOrAddiction,
+    DisasterStrike.Betrayal,
+    DisasterStrike.Accident,
+    DisasterStrike.ClosePersonKilled,
+    DisasterStrike.FalseAccusation,
+    DisasterStrike.HuntedByTheLaw,
+    DisasterStrike.HuntedByACorp,
+    DisasterStrike.Incapacitation
+]
+
+export const DisasterStrikeTexts: Map<DisasterStrike, String> = new Map([
+    [DisasterStrike.FinancialLost, "Вы потеряли деньги"],
+    [DisasterStrike.Imprisonment, "Тюремное заключение"],
+    [DisasterStrike.IllnessOrAddiction, "Болезнь или зависимость"],
+    [DisasterStrike.Betrayal, "Предательство"],
+    [DisasterStrike.Accident, "Вы попали в аварию"],
+    [DisasterStrike.ClosePersonKilled, "Близкий Вам человек был убит"],
+    [DisasterStrike.FalseAccusation, "Ложное обвинение"],
+    [DisasterStrike.HuntedByTheLaw, "Вас преследует полиция"],
+    [DisasterStrike.HuntedByACorp, "Вас преследует одна из корпораций"],
+    [DisasterStrike.Incapacitation, "Вы получили травму"]
+])
+
+export enum LuckyEvent {
+    CityGovernmentConnection,
+    FinancialWindFall,
+    BigScore,
+    FindSensei,
+    FindTeacher,
+    FindCombatTeacher,
+    ExecOwes,
+    NomadPackBefriends,
+    PoliceForceFriend,
+    BoosterGangFriend,
+}
+
+export const LuckyEvents: LuckyEvent[] = [
+    LuckyEvent.CityGovernmentConnection,
+    LuckyEvent.FinancialWindFall,
+    LuckyEvent.BigScore,
+    LuckyEvent.FindSensei,
+    LuckyEvent.FindTeacher,
+    LuckyEvent.FindCombatTeacher,
+    LuckyEvent.ExecOwes,
+    LuckyEvent.NomadPackBefriends,
+    LuckyEvent.PoliceForceFriend,
+    LuckyEvent.BoosterGangFriend,
+]
+
+export const LuckyEventTexts: Map<LuckyEvent, String> = new Map([
+    [LuckyEvent.CityGovernmentConnection, "Связи в городском правительстве"],
+    [LuckyEvent.FinancialWindFall, "Вы заработали деньги"],
+    [LuckyEvent.BigScore, "Большой доход"],
+    [LuckyEvent.FindSensei, "Вы нашли учителя боевых искусств"],
+    [LuckyEvent.FindTeacher, "Вы нашли академического преподавателя"],
+    [LuckyEvent.FindCombatTeacher, "Вы нашли учителя оружейника"],
+    [LuckyEvent.NomadPackBefriends, "Вы подружились со стаей кочевникво"],
+    [LuckyEvent.PoliceForceFriend, "У вас появился друг в полиции"],
+    [LuckyEvent.BoosterGangFriend, "У вас появился друг в банде"]
+])
