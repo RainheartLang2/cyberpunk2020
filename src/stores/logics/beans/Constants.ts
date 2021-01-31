@@ -83,16 +83,16 @@ export const LifeEventTexts: Map<LifeEventType, String> = new Map([
 ])
 
 export enum DisasterStrike {
-    FinancialLost,
-    Imprisonment,
-    IllnessOrAddiction,
-    Betrayal,
-    Accident,
-    ClosePersonKilled,
-    FalseAccusation,
-    HuntedByTheLaw,
-    HuntedByACorp,
-    Incapacitation
+    FinancialLost = "FinancialLost",
+    Imprisonment = "Imprisonment",
+    IllnessOrAddiction = "IllnessOrAddiction",
+    Betrayal = "Betrayal",
+    Accident = "Accident",
+    ClosePersonKilled = "ClosePersonKilled",
+    FalseAccusation = "FalseAccusation",
+    HuntedByTheLaw = "HuntedByTheLaw",
+    HuntedByACorp = "HuntedByACorp",
+    Incapacitation = "Incapacitation"
 }
 
 export const DisasterStrikes: DisasterStrike[] = [
@@ -108,7 +108,7 @@ export const DisasterStrikes: DisasterStrike[] = [
     DisasterStrike.Incapacitation
 ]
 
-export const DisasterStrikeTexts: Map<DisasterStrike, String> = new Map([
+export const DisasterStrikeTexts: Map<string, string> = new Map([
     [DisasterStrike.FinancialLost, "Вы потеряли деньги"],
     [DisasterStrike.Imprisonment, "Тюремное заключение"],
     [DisasterStrike.IllnessOrAddiction, "Болезнь или зависимость"],
@@ -122,16 +122,16 @@ export const DisasterStrikeTexts: Map<DisasterStrike, String> = new Map([
 ])
 
 export enum LuckyEvent {
-    CityGovernmentConnection,
-    FinancialWindFall,
-    BigScore,
-    FindSensei,
-    FindTeacher,
-    FindCombatTeacher,
-    ExecOwes,
-    NomadPackBefriends,
-    PoliceForceFriend,
-    BoosterGangFriend,
+    CityGovernmentConnection = "CityGovernmentConnection",
+    FinancialWindFall = "FinancialWindFall",
+    BigScore = "BigScore",
+    FindSensei = "FindSensei",
+    FindTeacher = "FindTeacher",
+    FindCombatTeacher = "FindCombatTeacher",
+    ExecOwes = "ExecOwes",
+    NomadPackBefriends = "NomadPackBefriends",
+    PoliceForceFriend = "PoliceForceFriend",
+    BoosterGangFriend = "BoosterGangFriend",
 }
 
 export const LuckyEvents: LuckyEvent[] = [
@@ -147,14 +147,55 @@ export const LuckyEvents: LuckyEvent[] = [
     LuckyEvent.BoosterGangFriend,
 ]
 
-export const LuckyEventTexts: Map<LuckyEvent, String> = new Map([
+export const LuckyEventTexts: Map<string, string> = new Map([
     [LuckyEvent.CityGovernmentConnection, "Связи в городском правительстве"],
     [LuckyEvent.FinancialWindFall, "Вы заработали деньги"],
     [LuckyEvent.BigScore, "Большой доход"],
     [LuckyEvent.FindSensei, "Вы нашли учителя боевых искусств"],
     [LuckyEvent.FindTeacher, "Вы нашли академического преподавателя"],
     [LuckyEvent.FindCombatTeacher, "Вы нашли учителя оружейника"],
-    [LuckyEvent.NomadPackBefriends, "Вы подружились со стаей кочевникво"],
+    [LuckyEvent.ExecOwes, "Один из корпоративных директоров в долгу перед вами"],
+    [LuckyEvent.NomadPackBefriends, "Вы подружились со стаей кочевников"],
     [LuckyEvent.PoliceForceFriend, "У вас появился друг в полиции"],
     [LuckyEvent.BoosterGangFriend, "У вас появился друг в банде"]
+])
+
+export const FriendType = {
+    LikeBigSibling: "LikeBigSibling",
+    LikeLittleSibling: "LikeLittleSibling",
+    Mentor: "Mentor",
+    OldLover: "OldLover",
+    OldEnemy: "OldEnemy",
+    Coworker: "Coworker",
+    LikeFosterParent: "LikeFosterParent",
+    Relative: "Relative",
+    ChildhoodFriend: "ChildhoodFriend",
+    CommonInterest: "CommonInterest"
+}
+
+export const FriendTypes: string[] = [
+    FriendType.LikeBigSibling,
+    FriendType.LikeLittleSibling,
+    FriendType.Mentor,
+    FriendType.OldLover,
+    FriendType.OldEnemy,
+    FriendType.Coworker,
+    FriendType.LikeFosterParent,
+    FriendType.Relative,
+    FriendType.ChildhoodFriend,
+    FriendType.CommonInterest
+]
+
+
+export const FriendTypeTexts: Map<string, string> = new Map([
+    [FriendType.LikeBigSibling, "Как старший брат/сестра"],
+    [FriendType.LikeLittleSibling, "Как младший брат/сестра"],
+    [FriendType.Mentor, "Наставник"],
+    [FriendType.OldLover, "Бывший любовник"],
+    [FriendType.OldEnemy, "Бывший враг"],
+    [FriendType.Coworker, "Коллега"],
+    [FriendType.LikeFosterParent, "Словно приёмный родитель"],
+    [FriendType.Relative, "Родственник"],
+    [FriendType.ChildhoodFriend, "Друг детства"],
+    [FriendType.CommonInterest, "Единомышленник"]
 ])

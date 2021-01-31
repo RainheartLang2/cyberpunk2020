@@ -8,7 +8,7 @@ import {
     ChildhoodTypes,
     DisasterStrike, DisasterStrikes,
     FamilyRankings,
-    FamilyTragedies, LuckyEvent, LuckyEvents,
+    FamilyTragedies, FriendTypes, LuckyEvent, LuckyEvents,
     ParentStatuses,
     RelationType
 } from "./logics/beans/Constants";
@@ -27,7 +27,7 @@ export type CharAttributes = {
 }
 
 export type LifeEvent = {
-    type: DisasterStrike | LuckyEvent,
+    type: DisasterStrike | LuckyEvent | string,
     data: any,
     activate: (data: any) => void
 }
@@ -321,21 +321,46 @@ export class CharacterStore implements CharacterStore {
         this.lifeEvents[this.lifeEvents.length] = this.createRandomLifeEvent()
     }
 
+    @action.bound
+    rerollEvent(index: number) {
+        this.lifeEvents[index] = this.createRandomLifeEvent()
+    }
+
     createRandomLifeEvent() : LifeEvent {
         const roll = roll10()
         if (roll < 4) {
             return this.createRandomLuckOrDisaster()
+        } else if (roll < 7) {
+            return this.createRandomFriendOrEnemyEvent()
         } else {
             console.log("life event type not implemented")
             return this.createRandomLuckOrDisaster()
         }
     }
 
+
     createRandomLuckOrDisaster(): LifeEvent {
         if (roll10() % 2 == 0) {
             return this.createRandomDisaster()
         } else {
             return this.createRandomLuckyEvent()
+        }
+    }
+
+    createRandomFriendOrEnemyEvent(): LifeEvent {
+        if (roll10() % 2 == 0) {
+            return this.createRandomFriendEvent()
+        } else {
+            console.log("enemy event not implemented")
+            return this.createRandomFriendEvent()
+        }
+    }
+
+    createRandomFriendEvent(): LifeEvent {
+        return {
+            type: FriendTypes[roll10() - 1],
+            data: {},
+            activate: () => {}
         }
     }
 
